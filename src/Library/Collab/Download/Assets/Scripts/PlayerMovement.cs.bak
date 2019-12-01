@@ -1,0 +1,108 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerMovement : MonoBehaviour
+{
+    // Import CharacterController Component from Unity
+    public CharacterController2D controller;
+
+    public float runSpeed = 40f;
+    public float sprintValue = 0;
+
+	public float acceleration = 0f;
+    public float airAcceleration = 0f;
+    
+    float sprintMultiplier = 1;
+    float horizontalMove = 0f;
+
+    bool isJumping = false;
+    bool isShooting = false;
+
+    // Is grounded
+    public bool isGrounded;
+    public LayerMask groundLayers;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // Get Input from Left or Right, -1 for Left, 1 for Right, Check if player is on the Ground.
+        if (isGrounded)
+        {
+            // When pressing Right, Slowly Speed Up
+            if (horizontalMove <= runSpeed * sprintMultiplier && Input.GetKey("d"))
+            {
+                horizontalMove += ((acceleration * sprintMultiplier) * Input.GetAxisRaw("Horizontal")) * Time.fixedDeltaTime; 
+            }
+            //When pressing Left, Slowly Speed Up
+            else if (horizontalMove >= -runSpeed * sprintMultiplier && Input.GetKey("a"))
+                {
+                    horizontalMove += ((acceleration * sprintMultiplier) * Input.GetAxisRaw("Horizontal")) * Time.fixedDeltaTime; 
+                }
+            //If Not Pressing Anything, Stop Player
+            else
+            {
+                horizontalMove = (Input.GetAxisRaw("Horizontal") * runSpeed); //* sprintmultiplier;
+            }
+        }
+        else
+        {
+            // If player is mid-air, if they try changing directions change speed gradually
+            if (Input.GetKey("d") && horizontalMove <= 40)
+            {
+
+                horizontalMove += (airAcceleration * 2) * Time.fixedDeltaTime;
+                
+            }
+
+            if (Input.GetKey("a") && horizontalMove >= -40)
+            {
+
+                horizontalMove -= (airAcceleration * 2) * Time.fixedDeltaTime;
+                
+            }
+        }
+
+        // Check if player is touching the ground layer
+        isGrounded = Physics2D.OverlapArea(
+            new Vector2(transform.position.x - 0.5f, transform.position.y - 0.5f),
+            new Vector2(transform.position.x + 0.5f, transform.position.y - 0.51f), 
+            groundLayers);
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            isJumping = true;
+        }
+
+        // Check if Sprinting, If not Change Movement Multiplier
+        if (Input.GetButton("Sprint"))
+        {
+            sprintmultiplier = sprintvalue;
+        }
+        else
+        {
+            sprintmultiplier = 1;
+        }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            controller.Shoot();
+        }
+
+    }
+
+    private void FixedUpdate()
+    {
+        // Move Our Character by calling the CharacterController2D, Time delta makes sure we move the same amount no matter how often the function is called.
+       
+        controller.Move(horizontalmove * Time.fixedDeltaTime, false, isJumping);
+        isJumping = false;
+        
+    }
+}

@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &197441505175136353
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 197441505175136355}
+  - component: {fileID: 197441505175136352}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &197441505175136355
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197441505175136353}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &197441505175136352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197441505175136353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd414f2d9492304b982270b24d5cac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixerGroup: {fileID: 24300002, guid: e923172f632fa1b46bbb31e54949aa55, type: 2}
+  sounds:
+  - clip: {fileID: 8300000, guid: 1c950eb9043fae94f8f5e190455eb6e9, type: 3}
+    name: GunShot
+    loop: 0
+    volume: 0.731
+    pitch: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 3a53e519dbe7df34eb043148526fdd34, type: 3}
+    name: FootStep
+    loop: 0
+    volume: 0.18
+    pitch: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 54719929e2a386c4eb3b475cfa7c9ec1, type: 3}
+    name: DroppedContact
+    loop: 0
+    volume: 0.496
+    pitch: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 6863c029d8a838f48ba4d5b6281d2ac8, type: 3}
+    name: Theme
+    loop: 1
+    volume: 0.65
+    pitch: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: df0012ce33488ca44b0c5e8b45c503d0, type: 3}
+    name: Death
+    loop: 0
+    volume: 0.492
+    pitch: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 2f0b43156346a3b478dd1da954b0b6a8, type: 3}
+    name: Shotgun
+    loop: 0
+    volume: 0.408
+    pitch: 1
+    source: {fileID: 0}
